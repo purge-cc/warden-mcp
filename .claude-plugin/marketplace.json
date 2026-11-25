@@ -1,0 +1,12 @@
+{
+  "name": "purgecc",
+  "owner": { "name": "purge.cc" },
+  "description": "Claude Code plugin for the agent access of a Warden DNS filter",
+  "plugins": [
+    {
+      "name": "warden-mcp",
+      "source": { "source": "npm", "package": "@purgecc/warden-mcp@0.1.0" },
+      "description": "Connects Claude Code to the agent access of a Warden DNS filter"
+    }
+  ]
+}

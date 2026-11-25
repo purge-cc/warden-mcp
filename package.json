@@ -1,0 +1,47 @@
+{
+  "name": "@purgecc/warden-mcp",
+  "version": "0.1.0",
+  "description": "Stdio MCP bridge to Warden agent access: adds the bearer, pins the certificate fingerprint and forwards JSON-RPC unchanged",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "claude-code",
+    "claude-code-plugin",
+    "warden",
+    "dns",
+    "dns-filter"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purge-cc/warden-mcp.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "bin": {
+    "warden-mcp": "dist/bridge.js"
+  },
+  "files": [
+    "dist/",
+    ".claude-plugin/plugin.json",
+    "skills/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "wardenMinVersion": "0.45.0",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "tsc -p test && node --test --test-force-exit --test-reporter=spec \"dist-test/test/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "5.9.3"
+  }
+}

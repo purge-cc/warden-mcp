@@ -1,0 +1,47 @@
+{
+  "manifest_version": "0.4",
+  "name": "warden-mcp",
+  "display_name": "Warden",
+  "version": "0.1.0",
+  "description": "Connects Claude to the agent access of a Warden DNS filter: adds the token, pins the certificate fingerprint and forwards MCP messages unchanged.",
+  "author": { "name": "purge.cc", "url": "https://purge.cc" },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/bridge.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/bridge.js"],
+      "env": {
+        "WARDEN_URL": "${user_config.warden_url}",
+        "WARDEN_TOKEN": "${user_config.warden_token}",
+        "WARDEN_TLS_SHA256": "${user_config.warden_tls_sha256}"
+      }
+    }
+  },
+  "user_config": {
+    "warden_url": {
+      "type": "string",
+      "title": "Warden URL",
+      "description": "WARDEN_URL from the block that warden credential add printed, such as https://192.0.2.10:8443/mcp",
+      "required": true
+    },
+    "warden_token": {
+      "type": "string",
+      "title": "Warden token",
+      "description": "WARDEN_TOKEN from the block that warden credential add printed",
+      "sensitive": true,
+      "required": true
+    },
+    "warden_tls_sha256": {
+      "type": "string",
+      "title": "Certificate fingerprint",
+      "description": "WARDEN_TLS_SHA256: the fingerprint that warden agent cert show prints on the Warden host; needed for an https URL",
+      "default": ""
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=22" }
+  }
+}
